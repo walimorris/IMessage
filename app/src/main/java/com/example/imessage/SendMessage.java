@@ -19,7 +19,7 @@ public class SendMessage extends Activity {
      * Activates and starts activity of sending an intent with a message to ReceiveMessage
      * when the widget button"Send" is clicked
      *
-     * @param : Button is a widget of type View
+     * @param view: Button is a widget of type View
      *
      * Gets message from send_message_activity, converts message into into a type String,
      * pushes the intent to ReceiveMessage along with the message
@@ -27,8 +27,9 @@ public class SendMessage extends Activity {
     public void onSendMessage(View view) {
         EditText messageView = findViewById(R.id.message);
         String messageText = messageView.getText().toString();
-        Intent intent = new Intent(this, ReceiveMessage.class);
-        intent.putExtra(ReceiveMessage.EXTRA_MESSAGE, messageText);
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, messageText);
         startActivity(intent);
     }
 }
